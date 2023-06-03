@@ -1,0 +1,32 @@
+#!/run/current-system/sw/bin/bash
+#! nix-shell -i bash -p curl nix coreutils jq
+
+# Based on https://github.com/nix-community/emacs-overlay/blob/master/repos/emacs/update
+set -euxo pipefail
+
+SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+cd "$SCRIPTPATH"
+
+function format_repo_meta() {
+    owner="$1"
+    repo="$2"
+    rev="$3"
+    sha256="$4"
+    version="$5"
+    printf '{"type": "github", "owner": "%s", "repo": "%s", "rev": "%s", "sha256": "%s", "version": "%s"}' \
+           "$owner" "$repo" "$rev" "$sha256" "$version"
+}
+
+function update_stable() {
+    telega_release_tag="$(curl 'https://api.github.com/repos/zevlg/telega.el/releases?per_page=1' | jq -r .[0].tag_name)"
+    telega_version="${telega_release_tag##v}"
+    telega_digest="$(nix-prefetch-url --unpack "https://github.com/zevlg/telega.el/archive/refs/tags/${telega_release_tag}.tar.gz")"
+    format_repo_meta "zevlg" "telega.el" "${telega_release_tag}" "${telega_digest}" "${telega_version}" > 'telega.json'
+
+    tdlib_version="$(curl "https://raw.githubusercontent.com/zevlg/telega.el/${telega_release_tag}/telega.el" | grep '(defconst telega-tdlib-min-version' | cut -d\" -f2)"
+    tdlib_release_tag="v${tdlib_version}"
+    tdlib_digest="$(nix-prefetch-url --unpack "https://github.com/tdlib/td/archive/refs/tags/${tdlib_release_tag}.tar.gz")"
+    format_repo_meta "tdlib" "td" "${tdlib_release_tag}" "${tdlib_digest}" "${tdlib_version}" > 'tdlib.json'
+}
+
+update_stable
