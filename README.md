@@ -18,7 +18,7 @@ telega-server built with compatible tdlib version.
   # ...
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
-      url = https://github.com/ipvych/telega-overlay/archive/master.tar.gz;
+      url = https://github.com/ipvych/telega-overlay/archive/main.tar.gz;
     }))
   ];
   environment.systemPackages = with pkgs; [
@@ -34,7 +34,7 @@ telega-server built with compatible tdlib version.
 ```
 ### With NixOS configuration using flakes
 Add telega overlay as input to flake.nix like so
-```
+```nix
 {
   # ...
   telega-overlay = {
