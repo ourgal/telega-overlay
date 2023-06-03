@@ -68,6 +68,6 @@ unstable releases and writes them in approprite `.json` files that are
 then used by overlay.
 
 ## Credits
-Scipts for updating repos and general structure of repo was adapted
+Scipts for updating repos and general structure of repo were adapted
 from [emacs-overlay](https://github.com/nix-community/emacs-overlay)
 repository.

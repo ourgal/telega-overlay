@@ -1,4 +1,4 @@
-#!/run/current-system/sw/bin/bash
+#!/usr/bin/env nix-shell
 #! nix-shell -i bash -p curl nix coreutils jq
 
 # Based on https://github.com/nix-community/emacs-overlay/blob/master/repos/emacs/update
