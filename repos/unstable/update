@@ -25,7 +25,7 @@ function update_unstable() {
     telega_digest="$(nix-prefetch-url --unpack "https://github.com/zevlg/telega.el/archive/${telega_commit_sha}.tar.gz")"
     format_repo_meta "zevlg" "telega.el" "${telega_commit_sha}" "${telega_digest}" "${telega_version}" > 'telega.json'
 
-    tdlib_commit_sha="$(curl 'https://raw.githubusercontent.com/zevlg/telega.el/master/etc/Dockerfile' | grep 'RUN echo "TDLib' | cut -d- -f2)"
+    tdlib_commit_sha="$(curl 'https://raw.githubusercontent.com/zevlg/telega.el/master/etc/Dockerfile' | grep 'RUN echo "TDLib' | cut -d\" -f2 | cut -d- -f2)"
     tdlib_digest="$(nix-prefetch-url --unpack "https://github.com/tdlib/td/archive/${tdlib_commit_sha}.tar.gz")"
     format_repo_meta "tdlib" "td" "${tdlib_commit_sha}" "${tdlib_digest}" "${tdlib_min_version}" > 'tdlib.json'
 }
