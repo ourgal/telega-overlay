@@ -24,7 +24,7 @@ let
   } // (getAttributesFromJSONFile ../repos/stable/telega.json);
 in {
   emacsPackagesFor = emacs: (
-    (super.emacsPackagesFor emacs).overrideScope' (eself: esuper: {
+    (super.emacsPackagesFor emacs).overrideScope (eself: esuper: {
       melpaPackages.telega = esuper.melpaPackages.telega.overrideAttrs telegaOverride;
       melpaStablePackages.telega = esuper.melpaStablePackages.telega.overrideAttrs telegaStableOverride;
       telega = esuper.telega.overrideAttrs telegaStableOverride;
