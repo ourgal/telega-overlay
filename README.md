@@ -24,7 +24,7 @@ telega-server built with compatible tdlib version.
   environment.systemPackages = with pkgs; [
     ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [
       # for unstable telega
-      melpaPackages.telega
+      epkgs.melpaPackages.telega
       # for stable telega
       # epkgs.telega
      ]))
@@ -52,7 +52,7 @@ Then in configuration you can use in like so
   environment.systemPackages = with pkgs; [
     ((emacsPackagesFor emacs).emacsWithPackages (epkgs: [
       # for unstable telega
-      melpaPackages.telega
+      epkgs.melpaPackages.telega
       # for stable telega
       # epkgs.telega
      ]))
