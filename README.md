@@ -3,6 +3,13 @@ Overlay for nix that provides stable and unstable version of
 [telega.el](https://github.com/zevlg/telega.el) emacs package with
 telega-server built with compatible tdlib version.
 
+## No longer maintained
+I no longer use nixos so I cannot maintain this and have disabled 
+actions in this repository.  If you want to use this then you can
+fork repository and enable github actions in it, it should continue
+to work in the future assuming dockerfile that is used here to obtain
+commit hash is not changed significantly enough for script to break.
+
 ## Contents of the overlay
 - `emacsPackages.melpaPackages.telega` - latest version of telega with
   telega-server built with compatible tdlib version
