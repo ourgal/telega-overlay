@@ -9,7 +9,6 @@ jobs:
   refresh-overlay:
     name: Refresh inputs
     runs-on: ubuntu-latest
-    if: github.repository_owner == 'ipvych'
     permissions:
       contents: write
     steps:
